@@ -1,13 +1,12 @@
 (function(){
 	var appContext = {
-			googleAnalyticsKey: "",
+			googleAnalyticsKey: "UA-11129132-6",
 			lastQueryDate:null,
 			startQueryDate:null,
 			observers : [],
 			watchId: null,
 			refreshUrl : null,
 			counter : 0,
-			tickOnEvery : 10,
 			startWatching : function(term) {
 				this.stopWatching();
 				
@@ -18,10 +17,7 @@
 					var dataUrl = _self.getDataUrl(term);
 					$.getJSON(dataUrl, function(data){
 						_self.refreshUrl = data.refresh_url;
-						if(data.results.length > 0 || _self.counter > _self.tickOnEvery) {
-							_self.dispatchTrendChange([_self.lastQueryDate.getTime()-_self.startQueryDate.getTime(), data.results.length*data.results_per_page]);
-							_self.count = 0;
-						}
+						_self.dispatchTrendChange([_self.lastQueryDate.getTime()-_self.startQueryDate.getTime(), data.results.length]);
 						_self.counter += 1;
 					});
 				}, 1000);
@@ -32,6 +28,7 @@
 				this.refreshUrl = null;
 				this.watchId = null;
 				this.counter = 0;
+				this.dispatchTrendReset();
 			},
 			getDataUrl : function(searchTerm) {
 				if(this.refreshUrl == null)
@@ -43,9 +40,15 @@
 				this.observers.push({t: topic, o:func}); 
 			},
 			dispatchTrendChange : function(data) {
+				this.dispatch("trendChanges",data);
+			},
+			dispatchTrendReset : function() {
+				this.dispatch("trendReset");
+			},
+			dispatch : function(eventName,eventData) {
 				for(var i in this.observers) {
-					if(this.observers[i].t == "trendChanges")
-						this.observers[i].o(data);
+					if(this.observers[i].t == eventName)
+						this.observers[i].o(eventData);
 				}
 			}
 	};
@@ -53,4 +56,11 @@
 	window['appContext'] = appContext;	
 	
 	Component.overrideCurrent();
+	
+	if(window.location.hash != "") {
+		var term = window.location.hash.substr(1);
+		appContext.startWatching(term);
+		$("#submitQuery").val(term);
+		$("#submitBtn").text("re-submit");
+	}
 })();

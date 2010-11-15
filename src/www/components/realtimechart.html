@@ -3,6 +3,10 @@
 	</div>
 	<script>
 		var current = [];
+		appContext.watch("trendReset", function() {
+			current = [];
+			$("#placeholder").empty();
+		});
 		appContext.watch("trendChanges", function(data) {
 			current.push(data);
 			$.plot($("#placeholder"), [current]);		
