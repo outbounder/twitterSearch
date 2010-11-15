@@ -1,0 +1,12 @@
+<div>
+	<div id="placeholder" style="width:600px;height:300px;">
+	</div>
+	<script>
+		var current = [];
+		appContext.watch("trendChanges", function(data) {
+			current.push(data);
+			$.plot($("#placeholder"), [current]);		
+		});
+		
+	</script>
+</div>

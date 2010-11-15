@@ -1,0 +1,14 @@
+<div>
+	<input id="submitQuery" type="text" value="github" />
+	<a id="submitBtn" href="javascript: void(0);">submit</a>
+	
+	<script>
+		var _self = this;
+		this.submitQuery = function() {
+			_self.submitBtn.innerText = "re-submit";
+			appContext.startWatching($('#submitQuery').val());
+		}
+		
+		$("#submitBtn", _self).click(_self.submitQuery);
+	</script>
+</div>

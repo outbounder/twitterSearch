@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Twitter Search Trends Chart (realtime)</title>
+		
+		<!-- reset css -->
+		<link href="style/reset.css" rel="stylesheet" type="text/css"  />
+		<!-- jquery-ui -->
+		<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css">	
+		
+		<!-- jquery -->    
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+		<script language="javascript" type="text/javascript" src="libs/flot/jquery.flot.js"></script> 
+		<!-- Component -->
+		<script src="libs/componentjs/component.js"></script>
+		<script src="libs/ejs.js"></script>
+		<script src="libs/componentjs/component-extend-ejs.js"></script>
+		<script src="libs/componentjs/component-extend-emitter.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="style/styles.css" />
+		<link rel="stylesheet" type="text/css" href="style/techlight.css" />
+	</head>
+
+	<body>
+		<div align="center">
+			<script type="component" source="components/query"></script>
+			<script type="component" source="components/realtimechart"></script>
+			<script type="component" source="components/about"></script>
+		</div>
+		
+		<!-- It would be great if you leave the link back to the tutorial. Thanks! -->
+		<p class="credit">
+			<a href="http://obi.wizartworx.com/">UI implementation outbounder</a>
+		</p>
+		<p class="credit">
+			<a href="http://tutorialzine.com/2010/09/google-powered-site-search-ajax-jquery/">Initial Design/Layout by Tzine</a>
+		</p>
+		
+		<!-- webapp  -->
+		<script src="index.js"></script>
+		
+		<!-- analytics -->
+		<script type="text/javascript">
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', appContext.googleAnalyticsKey]);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		
+		</script>
+	</body>
+</html>
