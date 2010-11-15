@@ -18,9 +18,7 @@
 				_self.watchId = setInterval(function(){
 					_self.lastQueryDate = new Date();
 					var dataUrl = _self.getDataUrl(term);
-					console.log('here');
 					$.getJSON(dataUrl, function(data){
-						console.log(data.results.length);
 						_self.dispatchTrendChange([(_self.lastQueryDate.getTime()-_self.startQueryDate.getTime())/1000, _self.lastResultsCount+data.results.length]);
 						_self.counter += 1;
 						if(data.refresh_url != _self.refreshUrl)
