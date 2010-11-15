@@ -10,6 +10,8 @@
 			startWatching : function(term) {
 				this.stopWatching();
 				
+				window.location.hash = term;
+				
 				var _self = this;
 				this.startQueryDate = new Date();
 				_self.watchId = setInterval(function(){
